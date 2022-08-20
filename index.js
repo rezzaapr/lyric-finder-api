@@ -8,6 +8,7 @@ const search = require("./src/scripts/search")
 const cfg = require ("./src/scripts/scrape_cfg")
 // set the view engine to ejs
 
+app.use(express.static(__dirname + '/views'));
 app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
     res.render('pages/index', {
