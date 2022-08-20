@@ -1,21 +1,17 @@
-// load the things we need
-var express = require('express');
-var app = express();
-var fs = require('fs');
+
+
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const path = require("path");
 const cheerio = require("cheerio")
 const axios = require("axios")
 const search = require("./src/scripts/search")
 const cfg = require ("./src/scripts/scrape_cfg")
-// set the view engine to ejs
 
-app.use(express.static(__dirname + '/views'));
-app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
-    res.render('pages/index', {
-        
-    });
+    res.sendFile(path.join(__dirname+'/index.html'));
 });
-// about page
 app.get('/api/lyric', function(req, res) {
     const query = req.query.q
     search(query,function (result,titlesong){
